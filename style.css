@@ -1,0 +1,50 @@
+* {
+  padding: auto;
+}
+.title {
+  background-color: skyblue;
+  color: darkviolet;
+  padding: 2px;
+  text-align: center;
+}
+.img {
+  border: 3px solid black;
+  float: left;
+  height:200px;
+  width:200px;
+}
+.add {
+  margin: 8px;
+  padding: 8px;
+  background-color: blue;
+  color: white;
+  border: none;
+  width:150px;
+}
+.remove {
+  margin: 8px;
+  padding: 8px;
+  background-color: maroon;
+  color: white;
+  border: none;
+  width:180px;
+}
+.hh{
+  color: darkviolet;
+}
+.name {
+  color: darkred;
+}
+.about {
+  color: black;
+}
+.cart {
+  height : 350px;
+  background-color: lightgreen;
+  border-radius: 15px 15px 1 1;
+  padding: 1px;
+  margin: 2px;
+}
+.clear {
+  clear: both;
+}
