@@ -1,0 +1,142 @@
+const { useState } = React;
+function Watch() {
+  const items = [
+    {
+      pid: 1,
+      pName: "AGPTEK Smartwatch",
+      about:"AGPTEK Smartwatch for Android and iOS Phones IP68 Waterproof Activity Tracker with Full Touch Color Screen Heart Rate Monitor Pedometer Sleep Monitor, Pink, LW11",
+      img:
+        "https://user-images.githubusercontent.com/91945706/145683260-1d5aa7d3-630d-4ed5-b861-c31f0329c299.jpg",
+      qty: 0,
+      price: 2800
+    },
+    {
+      pid: 2,
+      pName:"Michael Kors Access Gen 4 MKGO Smartwatch",
+      about: "Michael Kors Access Gen 4 MKGO Smartwatch- Lightweight Touchscreen Powered with Wear OS by Google with Heart Rate, GPS, NFC, and Smartphone Notifications",
+      img:
+        "https://user-images.githubusercontent.com/91945706/145683278-cf953d0e-8c6e-42b2-bf5a-943fb7754280.jpg",
+      qty: 0,
+      price: 3500
+    },
+    {
+      pid: 3,
+      pName:"3ATM Waterproof Smartwatch with Sleep",
+      about: "Smart Watches, 2021 Smart Watch for Android Phones and iPhone Compatible, 3ATM Waterproof Smartwatch with Sleep, Heart Rate, Blood Oxygen Monitor, Christmas Best Gifts for WomenHer Rose Gold",
+      img:
+        "https://user-images.githubusercontent.com/91945706/145683275-73592fda-c700-4799-bcbe-f43ab1ecec6d.jpg",
+      qty: 0,
+      price: 3900
+    },
+    {
+      pid: 4,
+      pName:"Garmin Hybrid Smartwatch ",
+      about: "Garmin Hybrid Smartwatch with Real Watch Hands and Hidden Color Touchscreen Displays, rose gold with light sand case and band, 39mm, 010-02238-02",
+      img:
+        "https://user-images.githubusercontent.com/91945706/145683272-c08102bd-1a89-4437-af74-d9ef0dc8dde7.jpg",
+      qty: 0,
+      price: 4500
+    },
+    {
+      pid: 5,
+      pName:"Fossil Women's Gen Smartwatch",
+      about: "Suoman 3-Pack for New Fossil Women's Gen 5E 42mm Screen Protector, 2.5D 9H Hardness Tempered Glass Screen Protector for Fossil Women's Gen 5E 42mm Smartwatch",
+      img:
+        "https://user-images.githubusercontent.com/91945706/145683267-9c75cdf1-8d17-4861-95c8-b48104f92688.jpg",
+      qty: 0,
+      price: 5000
+    },
+    {
+      pid: 6,
+      pName:"3ATM Waterproof Smartwatch with Sleep, Heart Rate",
+      about: "Smart Watches, 2021 Smart Watch for Android Phones and iPhone Compatible, 3ATM Waterproof Smartwatch with Sleep, Heart Rate, Blood Oxygen Monitor, Christmas Best Gifts for Women/Her Rose Gold",
+      img:
+        "https://user-images.githubusercontent.com/91945706/145683270-274fcfb9-0927-46b4-a6ed-38445ff1694b.jpg",
+      qty: 0,
+      price: 4700
+     }
+  ];
+
+  const [counter, setCounter] = useState([...items]);
+  const [totalqty, settotalQty] = useState(0);
+  const [totalprice, settotalPrice] = useState(0);
+
+  //Add Product in Cart
+  var increment = (index) => {
+    const newItem = [...counter];
+    newItem[index - 1].qty++;
+    setCounter(newItem);
+    totalQuantity();
+    totalPrice();
+  };
+  //Remove Product From Cart
+  var decrement = (index) => {
+    const newItem = [...counter];
+    if (newItem[index - 1].qty != 0) {
+      newItem[index - 1].qty--;
+    }
+    setCounter(newItem);
+    totalQuantity();
+    totalPrice();
+  };
+  // Total Quantity of Product 
+  var totalQuantity = () => {
+    const temp = counter.reduce((total_qty, item) => {
+      return total_qty + item.qty;
+    }, 0);
+
+    settotalQty(temp);
+  };
+
+  //Total Price of Product 
+  var totalPrice = () => {
+    const totalPrice = counter.reduce((total, item) => {
+      return total + item.qty * item.price;
+    }, 0);
+
+    settotalPrice(totalPrice);
+  };
+
+  return (
+    <div>
+      <div class="title">
+        <i><h1>Ladies Smart Watches</h1></i>
+      </div>
+
+      {counter.map((w) => (
+        <div className="cart">
+          <div>
+            <h1 className="name">{w.pName}</h1>
+          </div>
+          <div>
+            <h3 className="about">{w.about}</h3>
+          </div>
+          <img src={w.img} width="100px" height="140px" className="img" />
+          <div>
+            <h2 class="hh">
+              &nbsp;&nbsp; Price: {w.price}
+            </h2>
+            <h2 class = "hh">
+              &nbsp;&nbsp; Qty : {w.qty}
+            </h2>
+          </div>
+
+          <button className="add" onClick={() => increment(w.pid)}>
+            <h3> Add to Cart</h3>
+          </button>
+          <button className="remove" onClick={() => decrement(w.pid)}>
+            <h3>Remove From Cart</h3>
+          </button>
+        </div>
+      ))}
+      <div className="clear"></div>
+      <div className="title">
+        <h2>
+          Total Qty : <span>{totalqty}</span> &nbsp; &nbsp;Total Price :{" "}
+          <span>{totalprice}</span>
+        </h2>
+      </div>
+    </div>
+  );
+}
+ReactDOM.render(<Watch />, document.getElementById("root"));
